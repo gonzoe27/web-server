@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+
+<body>
+<label for="name">Name</label>
+<input type="text" id="name">
+
+<button id="submit-name">Submit form</button>
+
+<script>
+    let submitNameButton = document.querySelector('#submit-name')
+
+    let nameInputElement = document.querySelector('#name')
+
+    submitNameButton.addEventListener('click', function() {
+        let userName = nameInputElement.value
+        if (userName.length == 0){
+            alert('Enter a name please!')
+        }else {
+            alert('The use name is: '+ userName)
+        }
+    })
+
+</script>
+</body>
+</html>

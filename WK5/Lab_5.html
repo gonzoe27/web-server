@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Club Membership</title>
+
+  <style>
+
+    input {
+      width: 100%;
+      padding: 5px;
+      margin: 5px 5px 5px 0px;
+      box-sizing: border-box;
+
+    }
+
+  </style>
+
+</head>
+<body>
+
+<h1>Student Club Roster</h1>
+
+<h2>Add Students</h2>
+
+<label for="student-name">Student Name</label><input id="student-name" name="student-name">
+<br>
+<label for="student-id">Student ID</label><input id="student-id" name="student-id">
+<br>
+<label for="student-gpa">Student GPA</label><input id="student-gpa" name="student-gpa" type="number">
+<br>
+<button id="add-student">Add Student</button>
+
+<h2>Student List</h2>
+
+<p>There are
+  <span id="student-count">
+          <!-- use JavaScript to count the number of students, and show here -->
+        </span>
+  student(s) in the club.</p>
+
+<ul id="student-list">
+  <!-- use JavaScript to create li elements  -->
+</ul>
+
+<script>
+    //make a variable to represent the span HTML element 
+
+    let studentCountSpanElement = document.querySelector('#student-count')
+
+    //also, make a variable to represent the number of students 
+    let studentCount = 0
+
+    studentCountSpanElement.innerHTML = studentCount
+    // start by creating three variables, one for each input
+    let student_id = document.querySelector('#student-id')
+    let student_name = document.querySelector('#student-name')
+    let student_gpa = document.querySelector('#student-gpa')
+    //create a variable for the ul element 
+    let student_list = document.querySelector('#add-student')
+
+    //add event listener to button
+    addStudentButton.addEventListener('Click', function(){
+      //when clicked
+      //read value from each input
+      let nameValue = student_name.value //Student Name value
+      if (nameValue.lenth == 0 ){
+        alert("Error:Please enter a Student name.")
+        return
+      }
+
+      //student id value 
+      let idValue = student_id.value 
+      if (idValue.lenth == 0 ){
+        alert("Error:Please enter a valid Student ID")
+        return
+      }
+
+      //student gpa value 
+      let gpaValue = Number(student_gpa.value) 
+      if (gpaValue.lenth = 0 || gpaValue > 4){
+        alert("Error:Please enter a valid GPA.")
+        return
+      }
+      
+      // make a new li element (see to do list)
+      let newLi = document.createElement('li')
+      
+      //set inner html to a new string from values
+      newLi.innerHTML = '${nameValue}, id: ${idValue}, GPA ${gpaValue}'
+
+      //add new li to ul 
+      student_list.appendChild(newLi)
+
+      //- Clear the values of the three input elements (1pt)
+      student_name.value = ''
+      student_id.value = ''
+      student_gpa.value = ''
+
+      // - Update the span#student-count value to the new number of students (1pt)
+      studentCount ++ 
+      studentCountSpanElement.innerHTML = studentCount
+      
+      
+    })
+    
+    
+    
+     
+    
+    /* Add the following functionality to this page
+    
+  [Note on HTML element notation: span#student-count means the span element with id="student-count" ]
+
+  When the page loads:
+      * Using JavaScript, display 0 in the span#student-count  (1pt)
+
+      * Add an event listener so that when button#add-students is clicked:
+          - Read the value from the student-name input, save in a variable. If the name is not entered, show an alert error message and return. (1pt)
+          - Read the value from the student-id input, save in a variable. If the id is not entered, show an alert error message and return. (1pt)
+          - Read the value from the student-gpa input, save in a variable. If the GPA is not entered, or is not in the range 0-4, show an alert error message and return.  (1pt)
+          - Create a new li element (1pt)
+          - Set the innerHTML of the li element to a string containing the student's name, id, and GPA  (1pt)
+              for example "Beyonce Knowles, id: aa1234bb, GPA 3.8"
+              Use a template string to generate this string
+          - Add the new li element to ul#student-list element (1pt)
+          
+         
+
+      You should not need to modify any of the HTML.
+  */
+
+</script>
+
+</body>
+</html>

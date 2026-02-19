@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Blood Reserves</h1>
+
+    <label for="blood-group-abo">ABO Blood Group</label>
+    <select id="blood-group-abo">
+        <option value="A">A</option>
+        <option value="AB">AB</option>
+        <option value="B">B</option>
+        <option value="O">O</option>
+    </select>
+
+    <br> 
+
+    <label for="blood-group-rh">Rh Factor</label>
+    <select id="blood-group-rh">
+        <option value="positive">Positive</option>
+        <option value="negative">Negative</option>
+    </select>
+
+    <br>
+    
+    <button id="get-blood-units-button">Get blood units</button>
+
+    <div id="display-blood-units">
+        <p>Blood group: <span id="blood-group-display"></span></p>
+        <p>Units available: <span id="units-available"></span></p>
+    </div>
+    
+    <script>
+
+        let bloodGroupAboInput = document.querySelector('#blood-group-abo')
+        let bloodGroupRhInput = document.querySelector('#blood-group-rh')
+
+        let getBloodUnitsButton = document.querySelector('#get-blood-units-button')
+
+        let bloodGroupDisplay = document.querySelector('#blood-group-display')
+        let unitsAvailableDisplay = document.querySelector('#units-available')
+
+        getBloodUnitsButton.addEventListener('click', function() {
+
+            // TODO finish this code to make a request to the blood supply API 
+            // The API endpoint is at https://blood-group-api.wl.r.appspot.com/
+            // request to get the number of units for the blood type entered 
+            // display the blood group e.g. A+ or B- in the #blood-group-display element
+            // display the number of units for that blood group in the units-available element 
+             // Build selected blood group string, e.g. "A+" or "O-"
+            const abo = bloodGroupAboInput.value
+            const rh = bloodGroupRhInput.value === 'positive' ? '+' : '-'
+            const bloodGroup = `${abo}${rh}`
+
+            // Show the selected blood group on the page
+            bloodGroupDisplay.textContent = bloodGroup
+            // Prepare API url with the blood group as a query parameter
+            // Assuming the API uses a GET route like /?group=A+
+            const url = `https://blood-group-api.wl.r.appspot.com/?group=${encodeURIComponent(bloodGroup)}`
+
+            // Fetch from the blood-group API
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                         throw new Error(`Network response was not ok (${response.status})`)
+                        }
+                    return response.json()
+                })
+                .then(data => {
+                // Display the units available
+                // Assuming the API returns JSON with a key `units`
+                unitsAvailableDisplay.textContent = data.units ?? 'Unavailable'
+                })
+                .catch(error => {
+                console.error('Error fetching blood data:', error)
+                unitsAvailableDisplay.textContent = 'Error retrieving data'
+                })
+                
+            })
+
+    </script>
+</body>
+</html>
