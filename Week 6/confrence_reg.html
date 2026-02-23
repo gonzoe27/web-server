@@ -1,60 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Confrence Registration</title>
+  <title>Conference Registration Form</title>
+ <link rel="stylesheet" href="bootstrap_styles.css">
 </head>
-
-<form>
+<body>
+    <form>
+    <!-- Name, a text input for the registrant's name, max length 70 characters. Required. --> 
     <label for="name">Name:</label>
-        <input id="name" name = "name" type="text" maxlength="70">
-
+    <input id="name" type="text" name="name" maxlength="70">
     <br>
-
-    <!----Password use pass word input-->
-    <label for="password">Password</label>
-        <input type="password" id="password" name="password">
-
-
-    <!---TODO EMAIL USING AN EMAIL INPUT REQUIRED-->
+    <!-- Password. Use a password input. Required. -->
+    <label for="password">Password:</label>
+    <input id="password" type="password" name="password">
     <br>
-
-    <!----Tshirt size-->
-    <label for="shirtSize">T-shirt Size:</label>
-    <select name="shirtSize" id="shirtSize">
-        <option>Small</option>
-        <option>Medium</option>
-        <option>Large</option>
-        <option>X-Large</option>
-        <option>2x-Large</option>
-    </select>
-
-        <!---TODO Date of birth REQUIRED-->
-        <!---TODO recieve email updates REQUIRED-->
-
-    <p>What sessions will you attend?</p>
-    <label for="morning">Morning</label>
-    <input for="morning" type="checkbox">
-    <label for="afternoon">Afternoon</label>
-    <input for="afternoon" type="checkbox">
+    <!-- Email, using an email input.  Required. -->
+    <label for="email">Email:</label>
+    <input id="email" type="email" name="email">
+    <br>
+    <!-- T-shirt size, either small, medium, or large. (All attendees receive a free t-shirt.) Use select and option elements. Required. -->
+    <label for="shirt_size">T-shirt Size:</label>
+        <select id="shirt_size" name="shirt_size">
+            <option value="">Select T-shirt Size</option>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+            <option value="xlarge">X-Large</option>
+            <option value="xxlarge">2X-Large</option>
+            <option value="xxxlarge">3X-Large</option>
+        </select>
+    <br>
+    <!-- Date of birth, a date input element. Required.  -->
+    <label for="dob">Date of Birth:</label>
+    <input id="dob" type="date" name="dob"> 
+    <br>
+    <!-- Receive email updates? Two radio buttons to select if wanting to receive email from conference sponsors; yes or no. Required. The radio buttons should work as radio buttons, selecting one button should deselect the other. -->
+    <label for="email_updates">Receive Email Updates from Conference Sponsors?</label>
+    <input id="email_updates_yes" type="radio" name="email_updates" value="yes"> Yes
+    <input id="email_updates_no" type="radio" name="email_updates" value="no"> No
+    <br>
+    <!-- Choose sessions, Two checkbox elements to select if attending the morning, and/or afternoon conference sessions.   -->
+    <label for="sessions">Choose Sessions:</label>
+    <input id="morning_session" type="checkbox" name="sessions" value="morning"> Morning Session
+    <input id="afternoon_session" type="checkbox" name="sessions" value="afternoon"> Afternoon Session
+    <br>
+    <!-- Special Requests, A textarea (for entering more than one line) any special requests. Set the size to be 7 rows and 70 columns. Not required. -->
+    <label for="special_requests">Special Requests:</label>
+    <textarea id="special_requests" name="special_requests" rows="7" cols="70"></textarea>
+    <br>
+    <!-- A submit button - input type = submit.
+        (Note that clicking this button doesn't do anything, but once we have a web server, the submit button could be used to send form data to the server.)-->
+    <button id="submit_button" type="submit">Submit Registration</button>
+    <br>
+    </form>
     
+</body>
+<script>
+    
+    // Get reference to the submit button
+    let submitButton = document.getElementById("submit_button");
 
+    // Get references to all the form inputs
+    let nameInput = document.getElementById("name");
+    let passwordInput = document.getElementById("password");
+    let emailInput = document.getElementById("email");
+    let shirtSizeInput = document.getElementsByName("shirt_size");
+    let dobInput = document.getElementById("dob");
+    let emailUpdatesInput = document.getElementsByName("email_updates");
+    let sessionsInput = document.getElementsByName("sessions");
+    let specialRequestsInput = document.getElementById("special_requests");
+    
+    submitButton.addEventListener("click", function(event) {
+        // This is the code that runs when the submit button is clicked
+        // 1. Validate form
+        //      Create an array of all the vailidation errors in the form
+        //      Going through all the inputs, one at a time. If there's a vaildation error, add a message to the array. 
+        //      If there's no issue with an input, do nothing.
+        // After checking all the inputs, look at the length of the array.
+        // If the array is empty, there were no errors, so the form is good.
+        // If array is not empty, there is at least one vaildation error. 
+        
+        // Create an array to hold any validation error messages
+        let errors = [];
 
+        // Validate the name input
+        let name = nameInput.value;
+        if (name.length === 0) {
+            errors.push("Name is required.");
+        }
 
+        // Validate the password input
+        let password = passwordInput.value;
+        if (passwordInput.value.length < 8) {
+            errors.push("Password must be at least 8 characters long.");
+        }
+        
+        // Validate the email input
+        let email = emailInput.value;
+        if (email === "") {
+            errors.push("Email is required.");
+        } else if (!email.includes("@")) {
+            errors.push("Email must contain an '@' symbol.");
+        }
 
+        // Validate the shirt size input
+        let shirtSize = shirtSizeInput.value;
+        if (shirtSize === "") {
+            errors.push("T-shirt size is required.");
+        }
 
+        // Validate the date of birth input
+        let dob = dobInput.value;
+        if (dob === "") {
+            errors.push("Date of birth is required.");
+        }
 
+        // Validate the email updates input
+        let emailUpdates = "";
+        for (let i = 0; i < emailUpdatesInput.length; i++) {
+            if (emailUpdatesInput[i].checked) {
+                emailUpdates = emailUpdatesInput[i].value;
+                break;
+            }
+        }
+        if (emailUpdates === "") {
+            errors.push("Please select if you want to receive email updates from conference sponsors.");
+        }
+    
+        // Validate the form iself
+        if (errors.length === 0) {
+            // No validation errors, form is good
+            console.log("Form is valid. Submitting form data...");
+            // To Do: process the form
+            // 2. Create a JSON object with the form data
+            let registrationData = {
+                name: name,
+                password: password,
+                email: email,
+                shirtSize: shirtSize,
+                dob: dob,
+                emailUpdates: emailUpdates,
+                sessions: [],
+                specialRequests: specialRequestsInput.value
+            };
+            console.log("Registration successful!");
+            console.log(registrationData);
+            console.log("Registration submitted successfully!");
+            console.log("Registered Items:" + JSON.stringify(registrationData));
 
+        } else {
+            // There are validation errors, display them to the user
+            alert('This form has these validation errors: ' + ('\n -') + errors.join('\n -'));
+        }
 
-
-    </select>
-
-
-
-
-
-
-
-
-
-
-</form>
+        
+    });
+</script>
+</html>

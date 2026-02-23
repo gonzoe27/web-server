@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Tree Order Form</title>
+
+  <style>
+      
+      input, select {
+          width: 100%;
+          padding: 5px;
+          margin: 5px 5px 5px 0px;
+          box-sizing: border-box;
+      }
+
+      input.error, select.error {
+        border: 2px red solid;
+      }
+
+  </style>
+
+</head>
+<body>
+
+    <h1>Minnesota Tree Order Form</h1>
+
+    <p>Enter information to order your tree. All fields are required.</p>
+
+    <h2>Order Information</h2>
+
+    <label for="homeowner-name">Homeowner Name</label><input id="homeowner-name" name="homeowner-name">
+    <br>
+    <label for="homeowner-house-number">House Number</label><input id="homeowner-house-number" name="homeowner-house-number">
+    <br>
+    <label for="homeowner-street-name">Street Name</label><input id="homeowner-street-name" name="homeowner-street-name">
+    <br>
+    <label for="city">City</label><input id="city" name="city"> 
+    <br>
+    <!-- All orders must be for Minnesota, so this input is not editable -->
+    <label for="state">State</label><input id="state" name="state" value="Minnesota" disabled> 
+    <br>
+    <label for="zipcode">Zip Code</label><input id="zipcode" name="zipcode">
+    <br>
+
+    <label for="tree-type">Tree Type</label>
+    <select id="tree-type">
+        <!-- Unselectable message shown. Since this will be required, it forces the user to actually pick a tree, not just click submit for the default first option -->
+        <option disabled selected value=""> Select a tree </option>  
+        <!-- The options that the user will be allowed to select, or choose from -->
+        <option name="tree-type">Cedar</option>
+        <option name="tree-type">Maple</option>
+        <option name="tree-type">Oak</option>
+    </select>
+    <br>
+
+    <button id="submit-order">Submit Order</button>    
+
+    <h2>Order Summary</h2>
+
+    <p id="order-summary">
+        <!-- TODO Use JavaScript to display the order information, 
+            only if all the required information is entered  -->
+        
+    </p>
+    
+
+
+<script>
+
+    let homeownerNameInput = document.querySelector('#homeowner-name');
+    let homeownerHouseNumberInput = document.querySelector('#homeowner-house-number');
+    let homeownerStreetNameInput = document.querySelector('#homeowner-street-name');
+    let treeTypeSelect = document.querySelector('#tree-type');
+
+    // TODO create a variable for city input element
+    let cityInput = document.querySelector('#city');
+    // TODO create a variable for zip code input element
+    let zipcodeInput = document.querySelector('#zipcode');
+    
+    let submitButton = document.querySelector('#submit-order');
+
+    let orderSummaryParagraph = document.querySelector('#order-summary');
+
+    submitButton.addEventListener('click', function() {
+
+        let name = homeownerNameInput.value;
+        let houseNumber = homeownerHouseNumberInput.value;
+        let streetName = homeownerStreetNameInput.value;
+        let treeType = treeTypeSelect.value;
+
+        // TODO get the value from the input#city
+        let city = cityInput.value;
+        // TODO get the value from the input#zipcode
+        let zipcode = zipcodeInput.value;
+
+        // TODO Validate that all six input and select elements have been completed
+        //  - check they all have a value
+        // Optional extra: add the class .error to any inputs with an error (and only inputs with an error)
+        // to give the user visual feedback for which inputs need to be fixed or completed. 
+        // There's a style for input.error and select.error defined in the styles (in the head)
+        // which will be applied if you give the class .error to any elements on the page. 
+        // Make sure you remove this class when the form is completed correctly.
+        // If a form element has not been completed, or if the data is not valid, 
+        // add an error message to the errors array. (Hint: use push to add to the end of the array)
+        // Add one error message for each problem with the form. 
+        let errors = [];
+
+        //Validation of the name 
+        if (name.length === 0 ) {
+            errors.push("Name is required.");
+        }
+
+        //house number validation 
+        if (houseNumber.length === 0){
+            errors.push("Please enter in a house number.");
+        }else if (/[a-zA-Z]/.test(houseNumber)){
+            errors.push("Please enter in a valid house number (numbers only)");
+        }
+
+        //street name validation
+        if (streetName.length === 0){
+            errors.push("A valid street name is required!");
+        }
+        
+        //city name validation
+        if (city.length === 0 ){
+            errors.push("A valid city name is required!");
+        }else if (/[0-9]/.test(city)){
+            errors.push("Please enter in a valid city Name!");
+        }
+
+        //zip code validation
+        // TODO Validate the zipcode is in the range 55001 and 56763. 
+        // to check that the zip code is in Minnesota.
+        // Make sure your script doesn't accept non-numeric input for the zip code. 
+        if  (zipcode.length === 0 ){
+            errors.push("Please enter in a ZipCode!");
+        }else if (/[a-zA-Z]/.test(zipcode)){
+            errors.push("Please make sure that your ZipCode is correct!");
+        }else if (zipcode < 55001 || zipcode > 56763){
+            errors.push("Please make sure that your ZipCode is correct!");
+        }
+   
+        // TODO - If there are any errors after checking all of the input elements, 
+        // display an alert with all of the error messages. (Hint: use join)
+        // and then return from this function to prevent further processing 
+
+        if (errors.length === 0){
+            orderSummaryParagraph.innerHTML = `
+            Name: ${name} <br>
+            House Number: ${houseNumber} <br>
+            Street Name: ${streetName} <br>
+            City: ${city} <br>
+            Zipcode: ${zipcode} <br>
+            Tree Type: ${treeType}
+            `;
+            // TODO - If there are no errors, use a template string to display an order 
+            // summary in the order summary paragraph.
+            console.log("Form is valid. Submitting the data!");
+        }else {
+            //There are errors
+            alert('This form has these validation errors: ' + ('\n -') + errors.join('\n -'));
+        }
+
+
+        
+
+        
+    })
+
+
+
+</script>
+
+</body>
+</html>
