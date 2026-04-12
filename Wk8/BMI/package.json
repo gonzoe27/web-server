@@ -1,0 +1,16 @@
+{
+  "name": "bmi_app",
+  "version": "1.0.0",
+  "description": "Web Server to calculate BMI values ",
+  "license": "ISC",
+  "author": "Zoe Onan Gonzalez Rivera",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "hbs": "^4.2.0"
+  }
+}

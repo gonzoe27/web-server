@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+
+    <h1>Hello Vue</h1>
+
+    <p>{{ messageWithExclamationPoints }}</p>
+
+    <button v-on:click="addExclamation">Add !</button>
+
+    <button v-on:click="clearExclamations">Clear Exclamation Points</button>
+
+</div>
+
+<script>
+
+    const { createApp, ref, computed } = Vue 
+
+    createApp({
+        setup() {
+
+            const originalMessage = ref('Hi') 
+
+            const numberOfExclamationPoints = ref(0)
+
+            function addExclamation() {
+                if (numberOfExclamationPoints.value < 10) {
+                    numberOfExclamationPoints.value++ 
+                } else {
+                    alert('No more exclamation points!')
+                }
+            }
+
+            function clearExclamations() {
+                numberOfExclamationPoints.value = 1
+                message.value = 'Hi!'
+            }
+
+            const messageWithExclamationPoints = computed( function() {
+                let computedMessage = originalMessage.value
+
+                for (let x = 0; x < numberOfExclamationPoints.value; x++) {
+                    computedMessage = computedMessage + '!'
+                }
+                return computedMessage
+            })
+
+            return {
+                // refs - reactive data
+                originalMessage,
+                numberOfExclamationPoints,
+
+                // Computed properties
+                messageWithExclamationPoints, 
+
+                // function definitions 
+                addExclamation,
+                clearExclamations,
+            }
+        }
+    }).mount('#app')
+
+</script>
+
+</body>
+</html>

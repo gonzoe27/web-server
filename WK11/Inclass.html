@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conference Registration</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- Add some pre-built CSS, Water.css, https://watercss.kognise.dev/ -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
+
+</head>
+<body>
+
+    <div id="app">
+    
+        <h1>Conference Registration</h1>
+
+        <h2>Your information</h2>
+
+        <!-- TODO v-model  -->
+        <label for="name">Name</label><input v-model="name" id="name" type="text">
+
+        <h2>Choose your sessions</h2>
+
+        <!-- TODO v-model -->
+        <label for="morning-session">Morning</label><input v-model="morningSession" id="morning-session" type="checkbox">
+        
+        <!-- TODO v-model -->
+        <label for="afternoon-session">Afternoon</label><input v-model="afternoonSession" id="afternoon-session" type="checkbox">
+        
+        <!-- TODO display computed property  -->
+        <p>You are attending these sessions: <b>{{ sessionsAttendedString }}</b></p>
+
+        <!-- TODO v-on -->
+        <button v-on:click="submitRegistration">Submit Registration</button>
+    </div>
+
+    <script>
+
+        const { createApp, ref, computed } = Vue 
+
+        createApp({
+
+            setup() {
+                const name = ref('')
+                
+                // TODO reactive data for each session
+                const morningSession = ref(false)
+                const afternoonSession = ref(false)
+                
+                const sessionsAttended = computed( () => {
+                    // TODO create an array with the names of each session selected
+                    //  if no sessions selected, return empty array
+                    const sessions = [] //empty array
+                    if (morningSession.value === true) {
+                        sessions.push('Morning')
+                        
+                    }
+                    if (afternoonSession.value === true){
+                        sessions.push('Afternoon')
+                    }
+
+                    return sessions
+                })
+
+                // TODO create a computed property to return a string with the names of the 
+                //  sessions selected. If no sessions are selected, return the string 'No sessions selected'
+                
+
+                const sessionsAttendedString = computed( () => {
+
+                    if (sessionsAttended.value.lenght == 0 ){
+                        return 'No sessions selected'
+                    }else{
+                        return sessionsAttended.value.join(', ')
+                    }
+                        
+                })
+
+                const submitRegistration = () => {
+                    alert('Form submitted')
+                    // TODO (optional) remove the alert above 
+                    // validate form
+                    //   if errors, show an alert with the errors found in the form
+                    //   else, show an alert with the message "You are registered!"
+                }
+
+                return {
+                    // refs - reactive data  
+                    // TODO add your new refs 
+                    name, morningSession , afternoonSession,
+
+                    // computed properties
+                    // TODO add your new computed property 
+                    sessionsAttended,sessionsAttendedString,
+
+                    // functions 
+                    submitRegistration
+                }
+
+            }
+
+
+        }).mount('#app')
+
+    </script>
+</body>
+</html>

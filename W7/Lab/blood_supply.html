@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Blood Supply</title>
+    </head>
+    <body>
+        <h1>Blood Supply Checker</h1>
+
+        <div>
+            <label for="abo-group">ABO Blood Group</label>
+            <select id="abo-group">
+                <option>A</option>
+                <option>B</option>
+                <option>AB</option>
+                <option>O</option> 
+            </select>
+        </div>
+
+        <div>
+            <label for="rh-group">Rh Group</label>
+            <select id="rh-group">
+                <option value="positive">POSITIVE</option>
+                <option value="negative">NEGATIVE</option>
+            </select>
+        </div>
+
+        <div>
+            <button id="request-blood-supply">Check Blood Supply</button>
+        </div>
+
+        <div>
+            <p id="'results"></p>
+        </div>
+
+        <script>
+            let requestBloodSupplyButton = document.querySelector('#request-blood-supply');
+            let aboSelect = document.querySelector('#abo-group');
+            let rhSelect = document.querySelector('#rh-group');
+
+            requestBloodSupplyButton.addEventListener('click', function(){
+                //alert('hello!')
+                let aboGroup = aboSelect.value 
+                let rhGroup = rhSelect.value
+                console.log(aboGroup + rhGroup)
+
+                let resultMessageElement = document.querySelector('#results')
+
+                //TODO - usa a format string
+
+                let url = 'https://blood-group-api.wl.r.appspot.com/api/blood_units_by_group?group=' + aboGroup + rhGroup
+                
+                console.log(url)
+
+                fetch(url).then(function(theEntireServerReponse){ //returns a promise that it will give data once avaiable
+                    //response is the whole response from the server
+                    //which hopefully includes JSON data
+                    //the function here is called when data is available
+                    //from the server. The then fuction calls the callback funciton with all the data from the server as the argument 
+
+                    //what about the JSON??
+
+                    let json = theEntireServerReponse.json()
+                    return json //where does this go?
+                }).then(function(jsonData) {
+                    console.log(jsonData)
+                    let availablility = jsonData.blood_availablity
+                    console.log(availablility)
+
+                    let unitsAvailable = availablility.units_available
+
+                    console.log(unitsAvailable)
+
+                    resultMessageElement.innerHTML = 'There are ${unitsAvaiable} units of blood type ${aboGroup} ${rhGroup}'
+
+                    
+                })
+
+
+
+             })
+                //TODO add comments 
+        </script>
+        
+    </body>
+</html>
