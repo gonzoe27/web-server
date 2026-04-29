@@ -1,11 +1,9 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, defineEmits } from 'vue'
 
 defineProps({
   question1 : String,
   question2 : String,
-  answer1 : Number,
-  answer2 : Number,
 })
 
 const emit = defineEmits([
@@ -26,28 +24,28 @@ function InputWeight() {
 
 <template>
 
+<div>
+
   <h2>Enter your height and weight</h2>
-  
-  
+
 
   <div>
-    {{ question1 }}
-    <input v-bind:value="answer1" v-on:change="InputHeight" type="textbox" id="answer-1">
-    <label for="answer-1">{{ answer1 }}</label>
+    <label for="answer-1">{{ question1 }}</label>
+    <input v-on:input="InputHeight" type="textbox" id="answer-1" v-model="inputHeight">
   </div>
 
   
 
   <div>
-    {{ question2 }}
-    <input v-bind:value="answer2" v-on:change="InputHeight" type="textbox" id="answer-2">
-    <label for="answer-2">{{ answer2 }}</label>
-
+    <label for="answer-2">{{ question2 }}</label>
+    <input v-on:input="InputWeight" type="textbox" id="answer-2" v-model="inputWeight">
   </div>
+
+  <div>
     <button id="Submit">Calculate!</button>
-  <div>
-
   </div>
+
+</div>
 
 </template>
 
