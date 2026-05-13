@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c4572de2-b148-4dc3-9bc0-88ca12466072" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/web server.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lab 15/.idea/Lab 15.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Wk8/student-server-feedback/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Wk8/student-server-feedback/routes/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Wk8/student-server-feedback/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Wk8/student-server-feedback/views/index.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../combine_wyr_vue_wyr_express_api_server/.idea/combine_wyr_vue_wyr_express_api_server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Files and Folders/Screenshot 2026-01-25 205937.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Files and Folders/Screenshot 2026-01-25 210036.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Files and Folders/Screenshot 2026-01-25 210106.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zos_Favorites.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/CaddoLake.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Community.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/j-cole1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WK11/Lab 11 - Copy/vue-week-2-starter-composition" beforeDir="false" afterPath="$PROJECT_DIR$/../WK11/Lab 11 - Copy/vue-week-2-starter-composition" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue-week-2-starter-composition" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-week-2-starter-composition" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "gonzoe27"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/gonzoe27/web-server.git",
+    "accountId": "698c4aff-e747-4387-9f2a-dfbb8f68664a"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3DXpPL7jm9pwVa96Qb1pN1IwgIW" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/zoego/Desktop/School/web server/Lab 2",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-3bd3a6803838-JavaScript-WS-261.22158.274" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c4572de2-b148-4dc3-9bc0-88ca12466072" name="Changes" comment="" />
+      <created>1778438243902</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1778438243902</updated>
+      <workItem from="1778438244925" duration="36000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
