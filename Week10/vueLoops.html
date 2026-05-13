@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Example Shopping Cart</title>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+
+
+    <body>
+        <div id="app">
+            <h1>Vue Loops</h1>
+            <label for="new-task" >Please enter your to-do task: </label>
+            <input v-model="newTask" id="new-task" >
+            <button v-on:click="addTask">Add Task</button>
+
+            <h2>Your Task List</h2>
+            <ul>
+                <li v-for="task in tasks">
+                    {{task}}
+                </li>
+            </ul>
+        </div>
+        <script>
+
+            const {createApp, ref } = Vue
+
+            createApp({
+                setup() {
+
+                    const taskList = ref([]) //empty array
+                    const newTask = ref('')//empty string
+
+                    const addTask = () => {
+                        if (newTask.value) {
+                            taskList.value.push(newTask.value)
+                            newTask.value = ''
+                        }
+                    }
+
+                    return {
+                        taskList,
+                        newTask,
+
+                        addTask
+                    }
+                }
+            }).mount('#app')
+        </script>
+    </body>
+</html>
+
