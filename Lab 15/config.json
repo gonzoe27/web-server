@@ -4,9 +4,9 @@
     "dialect": "sqlite"
   },
   "production": {
-    "username" : "YOUR_USERNAME",
-    "host" : "YOUR_DATABASE_SERVER.database.windows.net",
-    "database": "YOUR_DATABASE",
+    "username" : "CloudSAc7c721f7",
+    "host" : "student-sign-in-web-server-zoe.database.windows.net",
+    "database": "student-sign-in-web-server-zoe",
     "dialect": "mssql"
   }
 }
