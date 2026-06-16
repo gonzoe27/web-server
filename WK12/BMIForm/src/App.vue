@@ -1,13 +1,13 @@
 <script setup>
 import BodyMassIndex from './components/BodyMassIndex.vue'
 
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 //the questions to display
 const bmiHeightQues = ref('What is your height (in Meters)?')
 const bmiWeightQues = ref('Weight (in Kilograms)?')
 
-const userWeight = ref('') //Storing the users information
-const userHeight = ref('')
+const userWeight = ref() //Storing the users information
+const userHeight = ref()
 
 function updateUserInputHeight(userInput){
   userHeight.value = userInput
@@ -16,6 +16,10 @@ function updateUserInputHeight(userInput){
 function updateUserInputWeight(userInput){
   userWeight.value = userInput
 }
+
+const bmi = computed( () => {
+  return userWeight.value / (userHeight.value * userHeight.value)
+})
 
 </script> <!--End of Script-->
 
@@ -26,12 +30,11 @@ function updateUserInputWeight(userInput){
 <BodyMassIndex
 v-bind:question1="bmiHeightQues"
 v-bind:question2="bmiWeightQues"
-v-bind:answer1="userHeight"
-v-bind:answer2="userWeight"
-v-on:answer-height="updateUserInputHeight"
-v-on:answer-weight="updateUserInputWeight"
+v-on:answer-Height="updateUserInputHeight"
+v-on:answer-Weight="updateUserInputWeight"
 ></BodyMassIndex>
 
+<p>Your BMI is: {{ bmi }}</p>
 </template> <!---End of template-->
 
 <style scoped>
